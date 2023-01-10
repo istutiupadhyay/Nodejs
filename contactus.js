@@ -4,13 +4,12 @@ const express = require('express');
 const root = require('../helpers/path');
 const router = express.Router();
 
-router.get('/contactus', (req, res, next) => {
-    res.sendFile(path.join(root, 'views', 'contact.html'));
-});
-router.post('/contactus', (req, res, next) => {
-    console.log(req.body);
-    res.redirect('/success');
-});
+const productsControllers = require('../controllers/product'); 
+
+router.get('/contactus', productsControllers.getContactus);
+
+router.post('/contactus', productsControllers.postContactus);
+
 router.post("/contactus", (req,res) => {
     console.log(req.body.name)
     console.log(req.body.email)
